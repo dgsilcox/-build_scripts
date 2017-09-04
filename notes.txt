@@ -1,0 +1,46 @@
+
+provisioner "remote-exec" {
+    inline = [
+      "touch created.txt",
+    ]
+
+    connection {
+                user = "ec2-user"
+                private_key = "${file("dgsilcoxkeypair.pem")}"
+                host = "${self.public_ip}"
+            }
+    }
+}
+
+resource "aws_security_group" "ssh-in" {
+  name = "ssh-in"
+  description = "Allow http(s) and ssh traffic"
+  vpc_id = "vpc-1ff9087a"
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
+  tags {
+    Name = "ssh-in"
+  }
+}
+
+
+echo on
+# echo "executing my script"
+# sudo groupadd devgroup
+sudo yum install -y httpd24 php56 php56-mysqlnd
+sudo service httpd start
+sudo chkconfig httpd on
+# sudo usermod -a -G devgroup apache
+# sudo chown -R root:devgroup /var/www/html
+# sudo chmod -R 775 /var/www/html
+# sudo service httpd start
