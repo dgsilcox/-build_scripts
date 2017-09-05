@@ -1,4 +1,7 @@
-echo on
-sudo yum install -y httpd24 php56 php56-mysqlnd
-sudo service httpd start
-sudo chkconfig httpd on
+    RewriteEngine on
+    # Don't rewrite files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    # Rewrite everything else to index.html to allow html5 state links
+    RewriteRule ^ index.html [L]

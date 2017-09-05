@@ -3,4 +3,4 @@ variable "secret_key" {}
 variable "region" {
   default = "us-east-1"
 }
-variable "security_groups" {}
+# variable "security_groups" {}

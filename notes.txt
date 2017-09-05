@@ -1,3 +1,9 @@
+# Create a new load balancer attachment
+resource "aws_elb_attachment" "baz" {
+  elb      = "${aws_elb.bar.id}"
+  instance = "${aws_instance.foo.id}"
+}
+
 
 provisioner "remote-exec" {
     inline = [
@@ -44,3 +50,14 @@ sudo chkconfig httpd on
 # sudo chown -R root:devgroup /var/www/html
 # sudo chmod -R 775 /var/www/html
 # sudo service httpd start
+
+
+
+
+    RewriteEngine on
+    # Don't rewrite files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    # Rewrite everything else to index.html to allow html5 state links
+    RewriteRule ^ index.html [L]
