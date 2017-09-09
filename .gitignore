@@ -1,0 +1,7 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+*.tfvars
+*.tfstate*
+ip_address.txt
+.terraform
+*.pem
+/.idea
