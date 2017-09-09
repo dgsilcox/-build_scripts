@@ -10,7 +10,7 @@ module static {
   security_groups = "${module.static.website-sg}"
   subnet_ids = "subnet-5ee4fd16"
 }
-/*
+/* */
  module "blue" {
   source = "blue/"
 
@@ -21,9 +21,8 @@ module static {
   instance_type = "t2.micro"
   sns_topic_name = "${module.static.aws_topic_arn}"
   key_name = "dgsilcoxkeypair" }
-*/
-/* */
 
+/*
 module "green" {
   source = "green/"
 
@@ -35,3 +34,4 @@ module "green" {
   sns_topic_name = "${module.static.aws_topic_arn}"
   key_name = "dgsilcoxkeypair"
  }
+ */
