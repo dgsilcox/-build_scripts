@@ -23,6 +23,7 @@ module static {
   key_name = "dgsilcoxkeypair" }
 */
 /* */
+
 module "green" {
   source = "green/"
 
@@ -34,4 +35,3 @@ module "green" {
   sns_topic_name = "${module.static.aws_topic_arn}"
   key_name = "dgsilcoxkeypair"
  }
-

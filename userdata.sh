@@ -13,7 +13,7 @@ source /.nvm/nvm.sh
 nvm --version
 echo "Installing NodeJS"
 nvm install 8.4.0
-echo "cloning honest2dog"
+echo "Cloning and building honest2dog"
 git -version
 git clone https://github.com/dgsilcox/honest2dog.git
 cd honest2dog
@@ -21,4 +21,13 @@ npm install
 npm run build
 sudo chown -R ec2-user:ec2-user /var/www/html
 cp -R build/* /var/www/html
+echo "modify httpd conf"
+awk -v "n=157" -v "s=RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^ index.html [L]" '(NR==n) { print s } 1' /etc/httpd/conf/httpd.conf > /tmp/httpd.conf
+mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
+mv /tmp/httpd.conf /etc/httpd/conf/httpd.conf
+service httpd restart
 chkconfig httpd on
