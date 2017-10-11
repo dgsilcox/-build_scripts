@@ -45,4 +45,9 @@ resource "aws_autoscaling_notification" "webserver-asg-notification" {
     "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
   ]
   topic_arn = "${var.sns_topic_name}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
 }

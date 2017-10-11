@@ -1,6 +1,6 @@
 #!/bin/bash
 cd /tmp
-echo "Installing Packages"
+echo "Installing Apache and Git"
 yum update -y
 yum install -y httpd24 php56 php56-mysqlnd git
 
@@ -25,7 +25,7 @@ echo "Deploying Honest2Dog to /var/www/html"
 sudo chown -R ec2-user:ec2-user /var/www/html
 cp -R build/* /var/www/html
 
-echo "Modify Apache conf"
+echo "Modify Apache Conf"
 awk -v "n=157" -v "s=RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d

@@ -21,7 +21,7 @@ module static {
   instance_type = "t2.micro"
   sns_topic_name = "${module.static.aws_topic_arn}"
   key_name = "dgsilcoxkeypair" }
-
+ /* */
 /*
 module "green" {
   source = "green/"
@@ -34,4 +34,4 @@ module "green" {
   sns_topic_name = "${module.static.aws_topic_arn}"
   key_name = "dgsilcoxkeypair"
  }
- */
+  */
