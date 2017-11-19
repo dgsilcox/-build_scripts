@@ -18,6 +18,8 @@ echo "Cloning and building honest2dog"
 git -version
 git clone https://github.com/dgsilcox/honest2dog.git
 cd honest2dog
+git checkout -b development
+git pull origin development
 npm install
 npm run build
 
